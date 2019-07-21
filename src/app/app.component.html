@@ -1,10 +1,10 @@
 <!-- 第二步：在父组件中把要投影到子组件的html片段写到子组件的标签中， -->
 <!-- 第三点：父组件的wrapper 和子组件的类名一样，但是样式并不会冲突，每个组件各自的样式都被封装到各自的组件里面 -->
-<div class="wrapper">
+<!-- <div class="wrapper">
   <h2>我是父组件</h2>
   <div>这个div定义在父组件中</div>
   <app-child>
-    <!-- 这段代码会被投影到子组件中 ,注意：title 是父组件中的属性，被投影的这段代码显示在子组件上，但是插值表达式只能是父组件中的属性-->
+    这段代码会被投影到子组件中 ,注意：title 是父组件中的属性，被投影的这段代码显示在子组件上，但是插值表达式只能是父组件中的属性
     <div class="header">这是页头，这个div是父组件投影到子组件上的, title是{{title}}</div>
 
     <div>这个div是父组件投影到子组件的内容，这段代码将会投影到子组件 ng-content 定义的投影点上</div>
@@ -12,8 +12,8 @@
     <div class="footer">这是页脚，这个div是父组件投影到子组件上的</div>
   </app-child>
 
-  <!-- 第六：angular可以用属性绑定的方式插入一段自定义的html， -->
-  <div [innerHTML]="divContent"></div>
+  第六：angular可以用属性绑定的方式插入一段自定义的html，
+  <div [innerHTML]="divContent"></div> -->
 
   <!--
     第七：用ng-content 来投影和用innerHTml属性绑定区别？
@@ -26,4 +26,9 @@
 
   -->
 
-</div>
+<!-- </div> -->
+
+<a [routerLink]="['']" routerLinkActive="router-link-active" >child1</a><br>
+<a [routerLink]="['/child2']" routerLinkActive="router-link-active" >child2</a>
+<router-outlet></router-outlet>
+
