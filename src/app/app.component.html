@@ -1,21 +1,29 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!-- 第二步：在父组件中把要投影到子组件的html片段写到子组件的标签中， -->
+<!-- 第三点：父组件的wrapper 和子组件的类名一样，但是样式并不会冲突，每个组件各自的样式都被封装到各自的组件里面 -->
+<div class="wrapper">
+  <h2>我是父组件</h2>
+  <div>这个div定义在父组件中</div>
+  <app-child>
+    <!-- 这段代码会被投影到子组件中 ,注意：title 是父组件中的属性，被投影的这段代码显示在子组件上，但是插值表达式只能是父组件中的属性-->
+    <div class="header">这是页头，这个div是父组件投影到子组件上的, title是{{title}}</div>
 
-<router-outlet></router-outlet>
+    <div>这个div是父组件投影到子组件的内容，这段代码将会投影到子组件 ng-content 定义的投影点上</div>
+
+    <div class="footer">这是页脚，这个div是父组件投影到子组件上的</div>
+  </app-child>
+
+  <!-- 第六：angular可以用属性绑定的方式插入一段自定义的html， -->
+  <div [innerHTML]="divContent"></div>
+
+  <!--
+    第七：用ng-content 来投影和用innerHTml属性绑定区别？
+    对于 ng-content 来说，innerHTML是浏览器特定的api，这种方式[innerHTML] 只能在浏览器中使用，ng-content 是和平台无关的，
+    所以当想把html应用转为一个 app应用时，ng-content 会用更好的移植性，其次使用ng-content 可以定义多个投影，而innerHTML 只能插一段，
+    最后ng-content 只能绑定父组件中的属性，而innerHTML 只能绑定当前组件的属性内容，
+
+    ng-content 可以将父组件中任意的代码片段投影到子组件中
+
+
+  -->
+
+</div>
